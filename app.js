@@ -15,7 +15,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname+"/public"));
+app.use(express.static("/public"));
 
 mongoose.connect("mongodb+srv://MandarMaster:mandar@619@cluster0-vgmw1.mongodb.net/blogDB",{useNewUrlParser: true,useUnifiedTopology: true});
 
@@ -26,34 +26,34 @@ const postSchema=new mongoose.Schema({
 
 const Post= mongoose.model("post",postSchema);
 
-// const post =new Post({
-//   postTitle:"DAY 1",
-//   postBody:"This is the day 1 and I'm testing this"
-// });
-//
-// post.save();
+const post =new Post({
+  postTitle:"DAY 1",
+  postBody:"This is the day 1 and I'm testing this"
+});
+
+post.save();
 
 app.get("/", function(req, res){
     Post.find({},function(err,docs){
       if(err)
       console.log(err);
       else{
-        res.render(__dirname+"home",{startingContent:homeStartingContent,posts:docs});
+        res.render("home",{startingContent:homeStartingContent,posts:docs});
       }
     });
 
 });
 
 app.get("/about", function(req, res){
-  res.render(__dirname+"about", {aboutContent: aboutContent});
+  res.render("about", {aboutContent: aboutContent});
 });
 
 app.get("/contact", function(req, res){
-  res.render(__dirname+"contact", {contactContent: contactContent});
+  res.render("contact", {contactContent: contactContent});
 });
 
 app.get("/compose", function(req, res){
-  res.render(__dirname+"compose");
+  res.render("compose");
 });
 
 app.post("/compose", function(req, res){
