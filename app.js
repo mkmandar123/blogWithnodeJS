@@ -25,19 +25,20 @@ const postSchema=new mongoose.Schema({
 });
 
 const Post= mongoose.model("post",postSchema);
-
-const post =new Post({
-  postTitle:"DAY 1",
-  postBody:"This is the day 1 and I'm testing this"
-});
-
-post.save();
+//
+// const post =new Post({
+//   postTitle:"DAY 1",
+//   postBody:"This is the day 1 and I'm testing this"
+// });
+//
+// post.save();
 
 app.get("/", function(req, res){
     Post.find({},function(err,docs){
       if(err)
       console.log(err);
       else{
+
         res.render("home",{startingContent:homeStartingContent,posts:docs});
       }
     });
@@ -69,7 +70,7 @@ app.post("/compose", function(req, res){
 
 });
 
-app.get("/:postID", function(req, res){
+app.get("/posts/:postID", function(req, res){
   const requestedTitle = req.params.postID;
 
   Post.findById(requestedTitle,function(err,docs){
