@@ -15,7 +15,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("/public"));
+app.use(express.static(__dirname+"/public"));
 
 mongoose.connect("mongodb+srv://MandarMaster:mandar@619@cluster0-vgmw1.mongodb.net/blogDB",{useNewUrlParser: true,useUnifiedTopology: true});
 
