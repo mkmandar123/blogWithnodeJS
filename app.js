@@ -38,22 +38,22 @@ app.get("/", function(req, res){
       if(err)
       console.log(err);
       else{
-        res.render("home",{startingContent:homeStartingContent,posts:docs});
+        res.render(__dirname+"home",{startingContent:homeStartingContent,posts:docs});
       }
     });
 
 });
 
 app.get("/about", function(req, res){
-  res.render("about", {aboutContent: aboutContent});
+  res.render(__dirname+"about", {aboutContent: aboutContent});
 });
 
 app.get("/contact", function(req, res){
-  res.render("contact", {contactContent: contactContent});
+  res.render(__dirname+"contact", {contactContent: contactContent});
 });
 
 app.get("/compose", function(req, res){
-  res.render("compose");
+  res.render(__dirname+"compose");
 });
 
 app.post("/compose", function(req, res){
@@ -79,6 +79,4 @@ app.get("/:postID", function(req, res){
 
 });
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Server started on port 3000");
-});
+app.listen(process.env.PORT || 3000, function() {});
